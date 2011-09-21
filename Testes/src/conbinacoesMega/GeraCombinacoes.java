@@ -13,33 +13,39 @@ public class GeraCombinacoes {
 	//1 para n-1, 2 para n-2
 	//onde n = NUMCOMBINA
 	static final int INICIOCOMBINA = 0;
-	
+
 	public static void main(String[] args) {
 		//adicionar os numeros fixos
 		//numero minimo deve ser igual a NUMCOMBINA
-		ArrayList combo = new ArrayList<Integer[]>(QTDCOMBINA);
+		ArrayList<int[]> combo = new ArrayList<int[]>();
 		int seq[] = {17, 23, 3, 4, 5, 6, 7, 8, 9, 10};
-		
+
 		for( int i = 0; i < QTDCOMBINA; i++){
 
 
 			//inicio dos numeros randomicos nas sequencias
 			//0 para todos
 
-			int seq2[] = adicionaNum(seq, NUMCOMBINA, INICIOCOMBINA);
+			seq = adicionaNum(seq, NUMCOMBINA, INICIOCOMBINA);
+			combo.add(seq.clone());
+		}
+
+		for(int x = 0; x < QTDCOMBINA; x++){
+			
+			seq = combo.get(x);
 			
 			for(int j = 0; j < NUMCOMBINA; j++){
 
 				if (j != NUMCOMBINA - 1){
-					System.out.print(seq2[j]+",");	
+					System.out.print(seq[j]+",");	
 				}else{
-					System.out.print(seq2[j]+".");
+					System.out.print(seq[j]+".\n");
 				}
 
 			}
-			System.out.println("");
+
 		}
-		
+
 	}
 
 	private static int[] adicionaNum(int[] seq, int t, int inicio) {
