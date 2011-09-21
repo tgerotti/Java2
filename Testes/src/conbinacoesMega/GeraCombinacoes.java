@@ -1,5 +1,9 @@
 package conbinacoesMega;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -19,6 +23,8 @@ public class GeraCombinacoes {
 		//numero minimo deve ser igual a NUMCOMBINA
 		ArrayList<int[]> combo = new ArrayList<int[]>();
 		int seq[] = {17, 23, 3, 4, 5, 6, 7, 8, 9, 10};
+		File arq = new File("C:/Mega.txt");
+		
 
 		for( int i = 0; i < QTDCOMBINA; i++){
 
@@ -31,17 +37,27 @@ public class GeraCombinacoes {
 		}
 
 		for(int x = 0; x < QTDCOMBINA; x++){
-			
-			seq = combo.get(x);
-			
+			  
+	        seq = combo.get(x);
+	        try {
+				
+				PrintStream printString = new PrintStream(new FileOutputStream(arq));
+					
 			for(int j = 0; j < NUMCOMBINA; j++){
 
 				if (j != NUMCOMBINA - 1){
-					System.out.print(seq[j]+",");	
+					printString.print(seq[j]+",");
+					//System.out.print(seq[j]+",");
+					
 				}else{
-					System.out.print(seq[j]+".\n");
+					printString.print(seq[j]+".\n");
 				}
+				printString.close();
 
+			}
+	        } catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 
 		}
